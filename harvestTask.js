@@ -1,4 +1,4 @@
-let pathUtility = require('../utilities/pathUtility');
+let pathUtility = require('pathUtility');
 let taskStatus = require('taskStatus');
 
 let harvestTask = {

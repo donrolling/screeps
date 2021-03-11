@@ -1,8 +1,8 @@
-let tasks = require('../tasks/tasks');
-let taskStatus = require('../tasks/taskStatus');
-let harvestTask = require('../tasks/harvestTask');
-let deliverTask = require('../tasks/deliverTask');
-let buildTask = require('../tasks/buildTask');
+let tasks = require('tasks');
+let taskStatus = require('taskStatus');
+let harvestTask = require('harvestTask');
+let deliverTask = require('deliverTask');
+let buildTask = require('buildTask');
 
 let announcements = {
     on: true,

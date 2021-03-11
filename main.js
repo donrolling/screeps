@@ -1,5 +1,5 @@
-let foreman = require('./services/foreman');
-let hiringManager = require('./services/hiringManager');
+let foreman = require('foreman');
+let hiringManager = require('hiringManager');
 
 let spawnName = 'Spawn1';
 let taskQuota = [

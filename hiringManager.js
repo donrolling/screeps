@@ -1,4 +1,4 @@
-let creepFactory = require('../factories/creepFactory');
+let creepFactory = require('creepFactory');
 
 let hiringManager = {
     hire: (taskQuota, spawner) => {
