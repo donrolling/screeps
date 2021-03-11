@@ -6,6 +6,14 @@ let creepFactory = {
         let name = this.createName(nameLength);
         let attributes = this.getAttributesByTask(task);
         spawner.spawnCreep(attributes, name, { memory: { task: task } });
+        var canCreate = spawner.spawnCreep(attributes, name, { memory: { task: task, dryRun: true } });
+        if (canCreate === 0) {
+            var spawning = spawner.spawning;
+            if (!spawning) {
+                console.log(`Creating ${name} - ${task}.`, attributes);
+                spawner.spawnCreep(attributes, name, { memory: { task: task } });
+            }
+        }
     },
 
     createName: (length) => {

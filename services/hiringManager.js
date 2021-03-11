@@ -2,6 +2,10 @@ let creepFactory = require('../factories/creepFactory');
 
 let hiringManager = {
     hire: (taskQuota, spawner) => {
+        // don't do anything if we're already processing a new hire
+        if (spawner.spawning) {
+            return;
+        }
         // foreach task in the quota
         for (let q in taskQuota) {
             // get the creeps doing those tasks

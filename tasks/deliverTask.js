@@ -13,7 +13,7 @@ let deliverTask = {
             return taskStatus.working;
         }
         if (creep.transfer(spawner, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(spawner);
+            creep.moveTo(spawner, { visualizePathStyle: { stroke: '#ffffff' } });
         }
         return taskStatus.working;
     }
