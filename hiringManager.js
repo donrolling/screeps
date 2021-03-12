@@ -1,4 +1,5 @@
 let creepFactory = require('creepFactory');
+let tasks = require('tasks');
 
 let hiringManager = {
     schedule: {
@@ -17,7 +18,7 @@ let hiringManager = {
         return result;
     },
 
-    hire: function (taskQuota, spawner) {
+    hire: function (creepQuota, spawner) {
         // don't do anything if we're already processing a new hire
         let shouldDoWork = this.doWork();
         if (!shouldDoWork) {
@@ -27,20 +28,17 @@ let hiringManager = {
             console.log('not spawing now');
             return;
         }
-        // foreach task in the quota
-        for (let index = 0; index < taskQuota.length; index++) {
-            let q = taskQuota[index];
-            // get the creeps doing those tasks
-            let taskCreeps = _.filter(Game.creeps, (creep) => creep.memory.task === q.task);
-            // figure out how many to create
-            let diff = q.quota;
-            if (taskCreeps) {
-                diff = q.quota - taskCreeps.length;
-            }
-            // create them
-            for (let index = 0; index < diff; index++) {
-                creepFactory.create(spawner, q.task);
-            }
+        // figure out how many to create
+        let count = _.sum(Game.creeps, (c) => {
+            return (
+                c.memory.task === tasks.harvest
+                || c.memory.task === tasks.deliver
+            )
+        });
+        let diff = creepQuota.quota - count;
+        // create them
+        for (let index = 0; index < diff; index++) {
+            creepFactory.create(spawner, creepQuota.spawnTask);
         }
     }
 };

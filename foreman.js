@@ -26,7 +26,6 @@ let foreman = {
 
     performWork: function (creep, spawner) {
         this.announce(creep);
-        console.log(creep.memory.task);
         if (creep.memory.task === tasks.harvest) {
             return harvestTask.work(creep);
         }
