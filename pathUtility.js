@@ -1,6 +1,8 @@
+const creepFactory = require("./creepFactory");
+
 let pathUtility = {
-    findEnergyInRoom: (creep) => {
-        return this.findInRoomByType(FIND_SOURCES);
+    findEnergyInRoom: function (creep) {
+        return this.findInRoomByType(creep, FIND_SOURCES);
     },
 
     findController: function (creep) {

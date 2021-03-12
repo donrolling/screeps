@@ -1,14 +1,15 @@
 let foreman = require('foreman');
+let tasks = require('tasks');
 let hiringManager = require('hiringManager');
 
 let spawnName = 'Spawn1';
 let taskQuota = [
 	{
-		task: task.harvest,
+		task: tasks.harvest,
 		quota: 2
 	},
 	{
-		task: task.deliver,
+		task: tasks.deliver,
 		quota: 2
 	}
 ];

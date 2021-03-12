@@ -2,7 +2,7 @@ let tasks = require('tasks');
 let nameLength = 15;
 
 let creepFactory = {
-    create: (spawner, task) => {
+    create: function (spawner, task) {
         let name = this.createName(nameLength);
         let attributes = this.getAttributesByTask(task);
         spawner.spawnCreep(attributes, name, { memory: { task: task } });
@@ -16,7 +16,7 @@ let creepFactory = {
         }
     },
 
-    createName: (length) => {
+    createName: function (length) {
         var result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var charactersLength = characters.length;
@@ -26,7 +26,7 @@ let creepFactory = {
         return result;
     },
 
-    getAttributesByTask: (task) => {
+    getAttributesByTask: function (task) {
         if (task == tasks.harvest) {
             return [WORK, CARRY, MOVE];
         }

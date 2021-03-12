@@ -2,7 +2,7 @@ let pathUtility = require('pathUtility');
 let taskStatus = require('taskStatus');
 
 let harvestTask = {
-    work: (creep) => {
+    work: function (creep) {
         // let capacity = creep.store.getCapacity();
         // let usedCapacity = creep.store.getUsedCapacity();
         let freeCapacity = creep.store.getFreeCapacity();
