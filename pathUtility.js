@@ -7,6 +7,10 @@ let pathUtility = {
         return this.findStructureInRoomByType(creep, STRUCTURE_CONTROLLER);
     },
 
+    findController: function (creep) {
+        return this.findStructureInRoomByType(creep, STRUCTURE_EXTENSION);
+    },
+
     findConstructionSite: function (creep) {
         return this.findInRoomByType(creep, FIND_CONSTRUCTION_SITES);
     },

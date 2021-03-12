@@ -30,11 +30,13 @@ let foreman = {
             return harvestTask.work(creep);
         }
         if (creep.memory.task === tasks.deliver) {
+            //StructureExtension
+            //FIND_CONSTRUCTION_SITES
             // todo: later, delivery can be done to many sources
-            return deliverTask.work(creep, spawner);
+            return deliverTask.work(creep, STRUCTURE_CONTROLLER);
         }
         if (creep.memory.task === tasks.build) {
-            return buildTask.work(creep);
+            return buildTask.work(creep, FIND_CONSTRUCTION_SITES);
         }
     },
 
