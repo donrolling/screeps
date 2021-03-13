@@ -1,10 +1,10 @@
-let tasks = require('tasks');
-let taskStatus = require('taskStatus');
-let harvestTask = require('harvestTask');
-let deliverTask = require('deliverTask');
-let buildTask = require('buildTask');
+let tasks = require('task.tasks');
+let taskStatus = require('task.status');
+let harvestTask = require('task.harvest');
+let deliverTask = require('task.deliver');
+let buildTask = require('task.build');
 
-let foreman = {
+let assignmentService = {
     announcementSchedule: {
         on: true,
         counter: 0,
@@ -103,4 +103,4 @@ let foreman = {
     }
 };
 
-module.exports = foreman;
+module.exports = assignmentService;

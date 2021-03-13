@@ -1,4 +1,4 @@
-let tasks = require('tasks');
+let tasks = require('task.tasks');
 let nameLength = 15;
 
 let creepFactory = {

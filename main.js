@@ -1,6 +1,6 @@
-let foreman = require('foreman');
-let tasks = require('tasks');
-let hiringManager = require('hiringManager');
+let tasks = require('task.tasks');
+let assignmentsService = require('service.assignments');
+let spawningService = require('service.spawning');
 
 let spawnName = 'Spawn1';
 let creepQuota = {
@@ -10,6 +10,6 @@ let creepQuota = {
 
 module.exports.loop = () => {
 	let spawner = Game.spawns[spawnName];
-	hiringManager.hire(creepQuota, spawner);
-	foreman.assignWork(spawner);
+	spawningService.hire(creepQuota, spawner);
+	assignmentsService.assignWork(spawner);
 }

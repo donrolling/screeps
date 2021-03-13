@@ -1,7 +1,7 @@
-let creepFactory = require('creepFactory');
-let tasks = require('tasks');
+let creepFactory = require('factory.creep');
+let tasks = require('task.tasks');
 
-let hiringManager = {
+let spawningService = {
     schedule: {
         counter: 0,
         wait: 10
@@ -43,4 +43,4 @@ let hiringManager = {
     }
 };
 
-module.exports = hiringManager;
+module.exports = spawningService;

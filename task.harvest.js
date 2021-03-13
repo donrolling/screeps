@@ -1,5 +1,5 @@
-let pathUtility = require('pathUtility');
-let taskStatus = require('taskStatus');
+let pathUtility = require('utility.path');
+let taskStatus = require('task.status');
 
 let harvestTask = {
     work: function (creep) {
