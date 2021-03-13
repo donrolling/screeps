@@ -3,29 +3,24 @@ let taskStatus = require('task.status');
 let harvestTask = require('task.harvest');
 let deliverTask = require('task.deliver');
 let buildTask = require('task.build');
+let memoryService = require('service.memory');
+let announcementService = require('service.announcement');
 
 let assignmentService = {
-    announcementSchedule: {
-        on: true,
-        counter: 0,
-        for: 5,
-        wait: 50
-    },
-
     assignWork: function (spawner) {
-        this.fireSlackers();
-        this.announceAssess();
+        memoryService.cleanUpMemory();
+        announcementService.announceAssess();
         for (let name in Game.creeps) {
             let creep = Game.creeps[name];
-            let status = this.performWork(creep, spawner);
+            let status = this.performWork(creep);
             if (status === taskStatus.complete) {
                 this.reassignTask(creep);
             }
         }
     },
 
-    performWork: function (creep, spawner) {
-        this.announce(creep);
+    performWork: function (creep) {
+        announcementService.announce(creep);
         if (creep.memory.task === tasks.harvest) {
             return harvestTask.work(creep);
         }
@@ -40,28 +35,6 @@ let assignmentService = {
         }
     },
 
-    announce: function (creep) {
-        if (this.announcementSchedule.on) {
-            creep.say(creep.memory.task);
-        }
-    },
-
-    announceAssess: function () {
-        if (this.announcementSchedule.on) {
-            this.announcementSchedule.counter++;
-            if (this.announcementSchedule.for >= this.announcementSchedule.counter) {
-                this.announcementSchedule.on = false;
-                this.announcementSchedule.counter = 0;
-            }
-        } else {
-            this.announcementSchedule.counter++;
-            if (this.announcementSchedule.wait >= this.announcementSchedule.counter) {
-                this.announcementSchedule.on = true;
-                this.announcementSchedule.counter = 0;
-            }
-        }
-    },
-
     reassignTask: function (creep) {
         if (creep.memory.task === tasks.harvest) {
             // todo: for now all harvesters become delivery guys
@@ -70,35 +43,6 @@ let assignmentService = {
             creep.memory.task = tasks.harvest;
         } else if (creep.memory.task === tasks.build) {
             creep.memory.task = tasks.harvest;
-        }
-    },
-
-    // could build a list of creeps to rehire
-    fireSlackers: function () {
-        for (var name in Memory.creeps) {
-            if (!Game.creeps[name]) {
-                delete Memory.creeps[name];
-                console.log('Clearing non-existing creep memory:', name);
-            }
-        }
-    },
-
-    // hopefully won't need this...had an issue early on where I had to reset creep brains
-    reset: function () {
-        for (var creep in Memory.creeps) {
-
-            if (!Game.creeps[creep]) {
-                continue; // Ignore when creep is not found
-            }
-
-            var memory = JSON.stringify(Memory.creeps[creep]);
-            console.log('memory: ' + memory);
-            if (memory === '{}') {
-                console.log('creep does not have memory');
-                Memory.creeps[creep] = { role: 'builder', workid: 1 }
-            } else {
-                console.log('creep has memory');
-            }
         }
     }
 };
